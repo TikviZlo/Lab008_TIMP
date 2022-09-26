@@ -31,5 +31,5 @@ ENTRYPOINT ./example1 && ./example2
 ## 4. Собираем образ контейнера:
 
 ```
-$ docker build -t logger
+$ docker build .
 ```
