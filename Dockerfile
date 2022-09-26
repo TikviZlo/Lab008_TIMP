@@ -1,18 +1,21 @@
-FROM ubuntu:latest
-RUN apt update
+FROM ubuntu:20.04
 
+RUN apt update
 RUN apt install -yy gcc g++ cmake
 
-COPY . print/
-WORKDIR print
+COPY . app/
+WORKDIR app/exec/
 
-RUN cmake -H. -B_build -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=_install
+RUN cmake -H. -B_build
 RUN cmake --build _build
 
-ENV LOG_PATH /home/logs/log.txt
+WORKDIR _build/
 
-VOLUME /home/logs
+VOLUME ["/app/logs"]
 
-WORKDIR _install/bin
-
-ENTRYPOINT ./demo
+ENTRYPOINT ./example1 && ./example2
+Footer
+© 2022 GitHub, Inc.
+Footer navigation
+Terms
+Privacy
